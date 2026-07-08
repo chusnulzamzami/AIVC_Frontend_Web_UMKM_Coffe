@@ -43,19 +43,38 @@
 Halaman utama menampilkan hero *"Brewed for the Stars"*, badge premium floating, dan tombol **Explore Menu**. Di bawahnya terdapat grid menu unggulan, stories, dan berita.
 
 ### Menu
-![UI Preview](image/ui.png)
+
+<p align="center">
+  <img src="image/menu.png" width="400"/>
+</p>
+
 Grid 20 item kopi & makanan dengan filter **All / Coffee / Food**. Setiap kartu menampilkan gambar dari Unsplash, harga dalam IDR, dan tombol **Add to Cart**.
 
 ### Shop / Checkout
+
+<p align="center">
+  <img src="image/chekout.png" width="400"/>
+</p>
+
 Sistem checkout multi-step:
 1. **Cart** — Atur jumlah item, lihat total harga
 2. **Pilih Pembayaran** — Cash, QRIS (QR Code inline), atau E-Wallet (GoPay, OVO, Dana, ShopeePay, LinkAja)
 3. **Konfirmasi** — Tampilan sukses setelah pembayaran
 
 ### Our Story
+
+<p align="center">
+  <img src="image/ourstory.png" width="400"/>
+</p>
+
 Halaman brand story dengan 3 statistik: **50+** varian kopi, **10K+** pelanggan puas, **5** cabang di Banda Aceh.
 
 ### Locations
+
+<p align="center">
+  <img src="image/lokasi.png" width="400"/>
+</p>
+
 3 lokasi dengan alamat, jam operasional, dan Google Maps yang bisa diinteraksi.
 
 ---
