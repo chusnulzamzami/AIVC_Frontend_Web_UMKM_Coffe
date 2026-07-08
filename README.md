@@ -43,6 +43,7 @@
 Halaman utama menampilkan hero *"Brewed for the Stars"*, badge premium floating, dan tombol **Explore Menu**. Di bawahnya terdapat grid menu unggulan, stories, dan berita.
 
 ### Menu
+![UI Preview](image/ui.png)
 Grid 20 item kopi & makanan dengan filter **All / Coffee / Food**. Setiap kartu menampilkan gambar dari Unsplash, harga dalam IDR, dan tombol **Add to Cart**.
 
 ### Shop / Checkout
