@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lunar Coffee - Brewed for the Stars</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e8e9de",
+                        "surface-dim": "#dadbd0",
+                        "text-main": "#000000",
+                        "on-secondary-fixed-variant": "#344a54",
+                        "outline-variant": "#c7c8b3",
+                        "tertiary-fixed": "#d8e2ff",
+                        "secondary-fixed-dim": "#b3cad6",
+                        "surface-container-highest": "#e2e3d9",
+                        "surface-tint": "#566500",
+                        "surface-container": "#eeefe4",
+                        "on-background": "#1a1c16",
+                        "on-primary-fixed": "#181e00",
+                        "surface-variant": "#e2e3d9",
+                        "on-tertiary-fixed": "#0e1b33",
+                        "inverse-surface": "#2f312a",
+                        "inverse-on-surface": "#f0f2e7",
+                        "tertiary": "#525e7a",
+                        "outline": "#777867",
+                        "on-surface": "#1a1c16",
+                        "on-tertiary-fixed-variant": "#3b4761",
+                        "on-primary-fixed-variant": "#404c00",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#596800",
+                        "primary-fixed-dim": "#bdd060",
+                        "neutral": "#F9FAEF",
+                        "primary": "#566500",
+                        "secondary": "#4c616c",
+                        "secondary-container": "#cfe6f3",
+                        "on-surface-variant": "#464838",
+                        "tertiary-fixed-dim": "#bac6e6",
+                        "primary-fixed": "#d8ec79",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f9faef",
+                        "tertiary-container": "#d2deff",
+                        "on-secondary-fixed": "#071e27",
+                        "on-secondary-container": "#526772",
+                        "on-error-container": "#93000a",
+                        "shadow-dark": "#000000",
+                        "inverse-primary": "#bdd060",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f3f4ea",
+                        "on-error": "#ffffff",
+                        "primary-pastel": "#d4e875",
+                        "background": "#f9faef",
+                        "primary-container": "#d4e875",
+                        "secondary-fixed": "#cfe6f3",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#FFFFFF",
+                        "on-tertiary-container": "#56627e",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "2rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "16px",
+                        "md": "24px",
+                        "xl": "80px",
+                        "xs": "8px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Bricolage Grotesque", "sans-serif"],
+                        "headline-xl-mobile": ["Bricolage Grotesque", "sans-serif"],
+                        "headline-lg": ["Bricolage Grotesque", "sans-serif"],
+                        "h2": ["Bricolage Grotesque", "sans-serif"],
+                        "h1": ["Bricolage Grotesque", "sans-serif"],
+                        "label-sm": ["Bricolage Grotesque", "sans-serif"],
+                        "headline-xl": ["Bricolage Grotesque", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "headline-xl-mobile": ["40px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h2": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h1": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+                        "label-sm": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "800" }]
+                    },
+                    "keyframes": {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    },
+                    "animation": {
+                        float: 'float 3s ease-in-out infinite',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F9FAEF; /* background color */
+        }
+        /* Topography pattern for cards */
+        .bg-topography {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d8ec79' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Nav Link Underline */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    </style>
+</head>
+<body class="text-text-main font-body-md antialiased selection:bg-primary-pastel selection:text-black">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 w-full px-4 sm:px-6 lg:px-8 py-4">
+<nav aria-label="Global" class="bg-white dark:bg-neutral rounded-full border-2 border-black m-4 shadow-[4px_4px_0px_#000000] flex justify-between items-center px-8 py-3 max-w-7xl mx-auto">
+<div class="flex items-center gap-x-2">
+<img alt="Lunar Coffee Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF9jn7qk5JWXPlcaSeZA4Oy5_ENy0ii_RhhShhlFp5-Q8rdYU3g6kVOF1iE22qQPsG1g69QaVHrvkdkLQDUPQ9QmmenZxxc9wFGVosYXYWTj8ijqCMC8EQ5vcO4hK058vJWXASDSTfaRAZkjjpfs79U4n7GgwimAF3vpVuUclbmlzZK2EmhJ7Td7QylUWfpyCERgWHbprzq2eHk28oTecXR7ZbjkBgq3kuUoNOkDsDWV7au6exOjNp5g"/>
+<span class="font-headline-lg text-headline-lg font-black text-text-main dark:text-on-background">Lunar Coffee</span>
+<span class="text-xs align-top font-bold">™</span>
+</div>
+<!-- Desktop Nav -->
+<div class="hidden md:flex gap-x-8">
+<a class="nav-link font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Menu</a>
+<a class="nav-link font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold border-b-2 border-black" href="#">Our Story</a>
+<a class="nav-link font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Locations</a>
+<a class="nav-link font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Shop</a>
+</div>
+<div class="flex items-center">
+<a class="hidden md:inline-flex bg-black text-white px-6 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-wider shadow-[4px_4px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all border-2 border-black" href="#">
+                    Order Now
+                </a>
+<!-- Mobile menu button -->
+<button class="md:hidden -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" type="button">
+<span class="sr-only">Open main menu</span>
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-32">
+<!-- Hero / Trust Section -->
+<section class="reveal grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<!-- Image Side -->
+<div class="relative w-full aspect-square rounded-3xl bg-surface p-8 border-2 border-black shadow-[8px_8px_0px_#000000] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary-fixed-dim/20 to-transparent opacity-50"></div>
+<img class="w-full h-full object-cover relative z-10 rounded-2xl border-2 border-black animate-float" data-alt="Aesthetic coffee shop illustration in modern neubrutalist style. Isometric 3D view of a cup of coffee with a crescent moon latte art, floating coffee beans, and a small lunar rover on a saucer. High contrast, neon green and pastel blue accents, solid black shadows, clean off-white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMMaa0wUimrS9xxcef5LQIVl9pgt5eCEmWwXJxXNdGn3rZ09zsFDn-xBUm8IIekCw9oWzZ2Or_MoXFlEMX7VmzvNXYVjVF6lLyHqFXkDZlku71WsRfkYCQuY6tgoP5FBKg6Jk3xbkkSA0rqWxAo6Vj-KdWuqnMuO5sRu98XSvQTnJRwOEJAlq-iZsdBu3rUpWMOMuJ3NlWV0Twj85k0Ovlze_A5sRm6NqNEZUdZFI4pQJtaM1s365fnw"/>
+<!-- Floating Badge -->
+<div class="absolute bottom-8 left-8 bg-white border-2 border-black rounded-full p-4 shadow-[4px_4px_0px_#000000] flex flex-col items-center justify-center w-24 h-24 z-20 hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all animate-float" style="animation-delay: 0.5s;">
+<span class="material-symbols-outlined text-primary-pastel text-4xl" style="font-variation-settings: 'FILL' 1;">local_cafe</span>
+<span class="font-label-sm text-[10px] mt-1 font-bold text-center">Premium</span>
+</div>
+</div>
+<!-- Content Side -->
+<div class="space-y-8">
+<h1 class="font-h1 text-h1 text-text-main leading-tight">Brewed for the Stars</h1>
+<div class="flex gap-4">
+<span class="bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full font-label-sm text-sm border-2 border-black shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-default">Ethical Beans</span>
+<span class="bg-primary-pastel text-black px-4 py-1 rounded-full font-label-sm text-sm border-2 border-black shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-default">Celestial Atmosphere</span>
+<span class="bg-tertiary-container text-on-tertiary-container px-4 py-1 rounded-full font-label-sm text-sm border-2 border-black shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-default">Artisan Roasts</span>
+</div>
+<h2 class="font-h2 text-h2 text-text-main mt-8 mb-4">The Lunar Experience</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
+                    Experience the finest aesthetic coffee blends crafted with celestial precision. Our beans are sourced ethically and roasted to perfection, delivering a taste that's truly out of this world.
+                </p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
+                    Whether you're starting your morning orbit or winding down under the stars, Lunar Coffee is your perfect companion.
+                </p>
+<button class="bg-black text-white px-8 py-3 rounded-full font-label-sm text-label-sm uppercase tracking-wider shadow-[4px_4px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all border-2 border-black mt-4">
+                    Explore Menu
+                </button>
+</div>
+</section>
+<!-- Earn Points Section (Bento Grid Example) -->
+<section class="reveal text-center space-y-12">
+<div class="space-y-4 max-w-2xl mx-auto">
+<h2 class="font-h2 text-h2">Your Daily Dose of Space</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Discover our signature blends, crafted to elevate your daily routine.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="bg-primary-pastel rounded-3xl p-8 border-2 border-black shadow-[8px_8px_0px_#000000] flex flex-col items-center justify-center space-y-4 hover:scale-105 hover:shadow-[12px_12px_0px_#000000] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 0;">coffee</span>
+<h3 class="font-headline-lg text-2xl font-bold">Morning Orbit</h3>
+<p class="font-body-md text-sm text-center">Kickstart your day with our signature espresso blend. Bold, smooth, and full of energy.</p>
+</div>
+<!-- Center Phone Mockup (Placeholder) -->
+<div class="bg-surface rounded-3xl p-8 border-2 border-black shadow-[8px_8px_0px_#000000] flex flex-col items-center justify-center space-y-4 hover:scale-105 hover:shadow-[12px_12px_0px_#000000] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-4xl text-outline" style="font-variation-settings: 'FILL' 1;">wb_twilight</span>
+<h3 class="font-headline-lg text-2xl font-bold">Full Moon Latte</h3>
+<p class="font-body-md text-sm text-center">A creamy, comforting blend perfect for any time of day. Featuring our celestial latte art.</p>
+</div>
+<!-- Card 3 -->
+<div class="bg-secondary-container rounded-3xl p-8 border-2 border-black shadow-[8px_8px_0px_#000000] flex flex-col items-center justify-center space-y-4 hover:scale-105 hover:shadow-[12px_12px_0px_#000000] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 0;">ac_unit</span>
+<h3 class="font-headline-lg text-2xl font-bold">Cosmic Cold Brew</h3>
+<p class="font-body-md text-sm text-center">Slow-steeped for 24 hours, our cold brew delivers a refreshing, out-of-this-world taste.</p>
+</div>
+</div>
+</section>
+<!-- Latest News Section -->
+<section class="reveal space-y-12">
+<div class="flex justify-between items-end">
+<h2 class="font-h1 text-h1">Lunar Chronicles</h2>
+<button class="hidden md:block bg-black text-white px-8 py-3 rounded-full font-label-sm text-label-sm uppercase tracking-wider shadow-[4px_4px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all border-2 border-black">
+                    Read More
+                </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- News Card 1 -->
+<article class="bg-white rounded-3xl border-2 border-black shadow-[6px_6px_0px_#000000] overflow-hidden flex flex-col group cursor-pointer hover:scale-[1.02] hover:shadow-[10px_10px_0px_#000000] transition-all">
+<div class="h-48 bg-topography p-0 relative border-b-2 border-black">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7Y3XdF2UbfiZvpaFFRAiyTSrV0KPWDQXbao3z4NVrucWGbjk3cb9XeJRulRvleNEQQYIfLsvTaQiiGydIJiNUZJ6TvSCgxvcLya_MOxH_iI0fP-NtuVTnJVFoDF11j_sV989lhUcBp9kWmAJFq7_JHTN34TmOd9fcKsTQ7dy_ZawXVIT_fsyJsllR1tF-RAIlFzK7BqBy_GKcuZwvw07DSh1mawP57nHL_JDKl817XaClnrgi0QWSqg"/>
+<span class="absolute top-4 left-4 inline-flex items-center gap-1 bg-primary-pastel border-2 border-black rounded-full px-3 py-1 text-sm font-bold shadow-[2px_2px_0px_#000000]">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">local_cafe</span> Blog
+                        </span>
+</div>
+<div class="p-6 bg-surface flex-1 flex flex-col justify-between space-y-4">
+<div>
+<p class="text-xs font-bold text-on-surface-variant mb-2">October 20</p>
+<p class="font-body-md font-bold text-lg">The Art of the Moon-Latté</p>
+</div>
+<span class="self-start bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold border border-black shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all">Craft</span>
+</div>
+</article>
+<!-- News Card 2 -->
+<article class="bg-white rounded-3xl border-2 border-black shadow-[6px_6px_0px_#000000] overflow-hidden flex flex-col group cursor-pointer hover:scale-[1.02] hover:shadow-[10px_10px_0px_#000000] transition-all">
+<div class="h-48 bg-topography p-6 relative border-b-2 border-black">
+<span class="inline-flex items-center gap-1 bg-primary-pastel border-2 border-black rounded-full px-3 py-1 text-sm font-bold shadow-[2px_2px_0px_#000000]">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">local_cafe</span> Bean Journey
+                        </span>
+<h3 class="absolute bottom-6 left-6 font-headline-lg text-3xl font-black max-w-[80%] leading-tight italic">High Grounds</h3>
+</div>
+<div class="p-6 bg-surface flex-1 flex flex-col justify-between space-y-4">
+<div>
+<p class="text-xs font-bold text-on-surface-variant mb-2">October 15</p>
+<p class="font-body-md font-bold text-lg">Sourcing Beans from the High Grounds: Our Ethical Commitment</p>
+</div>
+<span class="self-start bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold border border-black shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all">Origin</span>
+</div>
+</article>
+<!-- News Card 3 (Placeholder to fill grid) -->
+<article class="bg-white rounded-3xl border-2 border-black shadow-[6px_6px_0px_#000000] overflow-hidden flex flex-col group cursor-pointer hover:scale-[1.02] hover:shadow-[10px_10px_0px_#000000] transition-all hidden lg:flex">
+<div class="h-48 bg-surface-container-low p-6 relative border-b-2 border-black flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-outline-variant">article</span>
+</div>
+<div class="p-6 bg-surface flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="h-3 bg-surface-dim rounded w-1/4 mb-4"></div>
+<div class="h-4 bg-surface-dim rounded w-3/4 mb-2"></div>
+<div class="h-4 bg-surface-dim rounded w-1/2"></div>
+</div>
+</div>
+</article>
+</div>
+<button class="md:hidden w-full bg-black text-white px-8 py-3 rounded-full font-label-sm text-label-sm uppercase tracking-wider shadow-[4px_4px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all border-2 border-black mt-8">
+                Read More
+            </button>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t-2 border-black mt-xl">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-lg py-md w-full gap-4">
+<div class="flex items-center gap-x-2">
+<img alt="Lunar Coffee Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF9jn7qk5JWXPlcaSeZA4Oy5_ENy0ii_RhhShhlFp5-Q8rdYU3g6kVOF1iE22qQPsG1g69QaVHrvkdkLQDUPQ9QmmenZxxc9wFGVosYXYWTj8ijqCMC8EQ5vcO4hK058vJWXASDSTfaRAZkjjpfs79U4n7GgwimAF3vpVuUclbmlzZK2EmhJ7Td7QylUWfpyCERgWHbprzq2eHk28oTecXR7ZbjkBgq3kuUoNOkDsDWV7au6exOjNp5g"/>
+<span class="font-headline-lg text-headline-lg text-text-main">Lunar Coffee</span>
+</div>
+<div class="flex gap-6 flex-wrap justify-center">
+<a class="nav-link font-label-sm text-label-sm text-on-surface-variant hover:text-text-main transition-colors" href="#">Privacy Policy</a>
+<a class="nav-link font-label-sm text-label-sm text-on-surface-variant hover:text-text-main transition-colors" href="#">Terms of Service</a>
+<a class="nav-link font-label-sm text-label-sm text-on-surface-variant hover:text-text-main transition-colors" href="#">Locations</a>
+<a class="nav-link font-label-sm text-label-sm text-on-surface-variant hover:text-text-main transition-colors" href="#">Contact</a>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Lunar Coffee. All rights reserved.</p>
+</div>
+</footer>
+<script>
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 150;
+
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+
+    window.addEventListener("scroll", reveal);
+    
+    // Initial check in case elements are already in view on load
+    reveal();
+</script>
+</body></html>

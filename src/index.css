@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@theme {
+  --color-on-primary: #ffffff;
+  --color-surface-container-high: #e8e9de;
+  --color-surface-dim: #dadbd0;
+  --color-text-main: #000000;
+  --color-on-secondary-fixed-variant: #344a54;
+  --color-outline-variant: #c7c8b3;
+  --color-tertiary-fixed: #d8e2ff;
+  --color-secondary-fixed-dim: #b3cad6;
+  --color-surface-container-highest: #e2e3d9;
+  --color-surface-tint: #566500;
+  --color-surface-container: #eeefe4;
+  --color-on-background: #1a1c16;
+  --color-on-primary-fixed: #181e00;
+  --color-surface-variant: #e2e3d9;
+  --color-on-tertiary-fixed: #0e1b33;
+  --color-inverse-surface: #2f312a;
+  --color-inverse-on-surface: #f0f2e7;
+  --color-tertiary: #525e7a;
+  --color-outline: #777867;
+  --color-on-surface: #1a1c16;
+  --color-on-tertiary-fixed-variant: #3b4761;
+  --color-on-primary-fixed-variant: #404c00;
+  --color-error: #ba1a1a;
+  --color-on-primary-container: #596800;
+  --color-primary-fixed-dim: #bdd060;
+  --color-neutral: #F9FAEF;
+  --color-primary: #566500;
+  --color-secondary: #4c616c;
+  --color-secondary-container: #cfe6f3;
+  --color-on-surface-variant: #464838;
+  --color-tertiary-fixed-dim: #bac6e6;
+  --color-primary-fixed: #d8ec79;
+  --color-on-secondary: #ffffff;
+  --color-surface-bright: #f9faef;
+  --color-tertiary-container: #d2deff;
+  --color-on-secondary-fixed: #071e27;
+  --color-on-secondary-container: #526772;
+  --color-on-error-container: #93000a;
+  --color-shadow-dark: #000000;
+  --color-inverse-primary: #bdd060;
+  --color-on-tertiary: #ffffff;
+  --color-surface-container-low: #f3f4ea;
+  --color-on-error: #ffffff;
+  --color-primary-pastel: #d4e875;
+  --color-background: #f9faef;
+  --color-primary-container: #d4e875;
+  --color-secondary-fixed: #cfe6f3;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface: #FFFFFF;
+  --color-on-tertiary-container: #56627e;
+  --color-error-container: #ffdad6;
+
+  --font-body-md: "Bricolage Grotesque", sans-serif;
+  --font-headline-xl-mobile: "Bricolage Grotesque", sans-serif;
+  --font-headline-lg: "Bricolage Grotesque", sans-serif;
+  --font-h2: "Bricolage Grotesque", sans-serif;
+  --font-h1: "Bricolage Grotesque", sans-serif;
+  --font-label-sm: "Bricolage Grotesque", sans-serif;
+  --font-headline-xl: "Bricolage Grotesque", sans-serif;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.6;
+  --text-body-md--font-weight: 500;
+  --text-headline-xl-mobile: 40px;
+  --text-headline-xl-mobile--line-height: 1.1;
+  --text-headline-xl-mobile--letter-spacing: -0.03em;
+  --text-headline-xl-mobile--font-weight: 800;
+  --text-headline-lg: 40px;
+  --text-headline-lg--line-height: 1.2;
+  --text-headline-lg--letter-spacing: -0.02em;
+  --text-headline-lg--font-weight: 700;
+  --text-h2: 40px;
+  --text-h2--line-height: 1.2;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 700;
+  --text-h1: 64px;
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.03em;
+  --text-h1--font-weight: 800;
+  --text-label-sm: 14px;
+  --text-label-sm--line-height: 1.4;
+  --text-label-sm--letter-spacing: 0.05em;
+  --text-label-sm--font-weight: 700;
+  --text-headline-xl: 64px;
+  --text-headline-xl--line-height: 1.1;
+  --text-headline-xl--letter-spacing: -0.03em;
+  --text-headline-xl--font-weight: 800;
+
+  --radius-sm: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 2rem;
+  --radius-full: 9999px;
+
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 48px;
+  --spacing-xl: 80px;
+
+  --animate-float: float 3s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+body {
+  background-color: #F9FAEF;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.bg-topography {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d8ec79' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
