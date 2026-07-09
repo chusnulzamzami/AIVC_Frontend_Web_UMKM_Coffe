@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
+import AdminLogin from './admin/AdminLogin.jsx'
+import AdminDashboard from './admin/AdminDashboard.jsx'
+import { menuApi, categoryApi, orderApi } from './admin/api.js'
 
-const menuItems = [
+const defaultMenuItems = [
   { id: 1, name: 'Espresso', img: 'https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=400&h=400&fit=crop', desc: 'Klasik dan pekat, jiwa dari setiap kopi', price: 25000, cat: 'Coffee' },
   { id: 2, name: 'Americano', img: 'https://images.unsplash.com/photo-1559496417-e6f2cb7a162b?w=400&h=400&fit=crop', desc: 'Espresso dengan air panas, ringan dan lembut', price: 30000, cat: 'Coffee' },
   { id: 3, name: 'Cappuccino', img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=400&fit=crop', desc: 'Espresso, susu panas, dan busa susu yang lembut', price: 35000, cat: 'Coffee' },
@@ -22,6 +25,7 @@ const menuItems = [
   { id: 19, name: 'Bagel Salmon', img: 'https://images.unsplash.com/photo-1624683941001-f0e70e1ef44a?w=400&h=400&fit=crop', desc: 'Bagel panggang dengan smoked salmon dan cream cheese', price: 32000, cat: 'Food' },
   { id: 20, name: 'Tiramisu', img: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=400&fit=crop', desc: 'Tiramisu klasik Italia dengan mascarpone', price: 30000, cat: 'Food' },
 ]
+const defaultCategories = ['Coffee', 'Food']
 
 const newsItems = [
   {
@@ -34,52 +38,10 @@ const newsItems = [
   { tag: 'News', label: 'Event', title: 'Lunar Coffee Grand Opening Celebration', date: 'October 10' },
 ]
 
-const QR_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-  <rect width="200" height="200" fill="white"/>
-  <rect x="10" y="10" width="40" height="40" rx="4" fill="black"/>
-  <rect x="18" y="18" width="8" height="8" fill="white"/>
-  <rect x="30" y="18" width="8" height="8" fill="white"/>
-  <rect x="18" y="30" width="8" height="8" fill="white"/>
-  <rect x="30" y="30" width="8" height="8" fill="white"/>
-  <rect x="150" y="10" width="40" height="40" rx="4" fill="black"/>
-  <rect x="158" y="18" width="8" height="8" fill="white"/>
-  <rect x="170" y="18" width="8" height="8" fill="white"/>
-  <rect x="158" y="30" width="8" height="8" fill="white"/>
-  <rect x="170" y="30" width="8" height="8" fill="white"/>
-  <rect x="10" y="150" width="40" height="40" rx="4" fill="black"/>
-  <rect x="18" y="158" width="8" height="8" fill="white"/>
-  <rect x="30" y="158" width="8" height="8" fill="white"/>
-  <rect x="18" y="170" width="8" height="8" fill="white"/>
-  <rect x="30" y="170" width="8" height="8" fill="white"/>
-  <rect x="62" y="62" width="4" height="4" fill="black"/><rect x="70" y="62" width="4" height="4" fill="black"/><rect x="78" y="62" width="4" height="4" fill="black"/><rect x="86" y="62" width="4" height="4" fill="black"/><rect x="98" y="62" width="4" height="4" fill="black"/><rect x="106" y="62" width="4" height="4" fill="black"/><rect x="114" y="62" width="4" height="4" fill="black"/><rect x="122" y="62" width="4" height="4" fill="black"/><rect x="134" y="62" width="4" height="4" fill="black"/><rect x="142" y="62" width="4" height="4" fill="black"/>
-  <rect x="62" y="70" width="4" height="4" fill="black"/><rect x="70" y="70" width="4" height="4" fill="black"/><rect x="78" y="70" width="4" height="4" fill="black"/><rect x="90" y="70" width="4" height="4" fill="black"/><rect x="98" y="70" width="4" height="4" fill="black"/><rect x="106" y="70" width="4" height="4" fill="black"/><rect x="118" y="70" width="4" height="4" fill="black"/><rect x="126" y="70" width="4" height="4" fill="black"/><rect x="134" y="70" width="4" height="4" fill="black"/><rect x="142" y="70" width="4" height="4" fill="black"/>
-  <rect x="62" y="78" width="4" height="4" fill="black"/><rect x="70" y="78" width="4" height="4" fill="black"/><rect x="82" y="78" width="4" height="4" fill="black"/><rect x="90" y="78" width="4" height="4" fill="black"/><rect x="98" y="78" width="4" height="4" fill="black"/><rect x="110" y="78" width="4" height="4" fill="black"/><rect x="118" y="78" width="4" height="4" fill="black"/><rect x="126" y="78" width="4" height="4" fill="black"/><rect x="138" y="78" width="4" height="4" fill="black"/><rect x="146" y="78" width="4" height="4" fill="black"/>
-  <rect x="66" y="86" width="4" height="4" fill="black"/><rect x="74" y="86" width="4" height="4" fill="black"/><rect x="82" y="86" width="4" height="4" fill="black"/><rect x="94" y="86" width="4" height="4" fill="black"/><rect x="106" y="86" width="4" height="4" fill="black"/><rect x="114" y="86" width="4" height="4" fill="black"/><rect x="122" y="86" width="4" height="4" fill="black"/><rect x="130" y="86" width="4" height="4" fill="black"/><rect x="138" y="86" width="4" height="4" fill="black"/>
-  <rect x="66" y="94" width="4" height="4" fill="black"/><rect x="78" y="94" width="4" height="4" fill="black"/><rect x="86" y="94" width="4" height="4" fill="black"/><rect x="98" y="94" width="4" height="4" fill="black"/><rect x="110" y="94" width="4" height="4" fill="black"/><rect x="122" y="94" width="4" height="4" fill="black"/><rect x="130" y="94" width="4" height="4" fill="black"/><rect x="142" y="94" width="4" height="4" fill="black"/>
-  <rect x="70" y="102" width="4" height="4" fill="black"/><rect x="78" y="102" width="4" height="4" fill="black"/><rect x="90" y="102" width="4" height="4" fill="black"/><rect x="98" y="102" width="4" height="4" fill="black"/><rect x="106" y="102" width="4" height="4" fill="black"/><rect x="114" y="102" width="4" height="4" fill="black"/><rect x="126" y="102" width="4" height="4" fill="black"/><rect x="138" y="102" width="4" height="4" fill="black"/><rect x="146" y="102" width="4" height="4" fill="black"/>
-  <rect x="62" y="110" width="4" height="4" fill="black"/><rect x="74" y="110" width="4" height="4" fill="black"/><rect x="82" y="110" width="4" height="4" fill="black"/><rect x="94" y="110" width="4" height="4" fill="black"/><rect x="106" y="110" width="4" height="4" fill="black"/><rect x="118" y="110" width="4" height="4" fill="black"/><rect x="126" y="110" width="4" height="4" fill="black"/><rect x="134" y="110" width="4" height="4" fill="black"/><rect x="142" y="110" width="4" height="4" fill="black"/>
-  <rect x="66" y="118" width="4" height="4" fill="black"/><rect x="78" y="118" width="4" height="4" fill="black"/><rect x="90" y="118" width="4" height="4" fill="black"/><rect x="102" y="118" width="4" height="4" fill="black"/><rect x="110" y="118" width="4" height="4" fill="black"/><rect x="118" y="118" width="4" height="4" fill="black"/><rect x="130" y="118" width="4" height="4" fill="black"/><rect x="142" y="118" width="4" height="4" fill="black"/>
-  <rect x="70" y="126" width="4" height="4" fill="black"/><rect x="82" y="126" width="4" height="4" fill="black"/><rect x="90" y="126" width="4" height="4" fill="black"/><rect x="102" y="126" width="4" height="4" fill="black"/><rect x="114" y="126" width="4" height="4" fill="black"/><rect x="126" y="126" width="4" height="4" fill="black"/><rect x="138" y="126" width="4" height="4" fill="black"/><rect x="146" y="126" width="4" height="4" fill="black"/>
-  <rect x="74" y="134" width="4" height="4" fill="black"/><rect x="86" y="134" width="4" height="4" fill="black"/><rect x="94" y="134" width="4" height="4" fill="black"/><rect x="106" y="134" width="4" height="4" fill="black"/><rect x="118" y="134" width="4" height="4" fill="black"/><rect x="130" y="134" width="4" height="4" fill="black"/><rect x="138" y="134" width="4" height="4" fill="black"/>
-  <rect x="66" y="142" width="4" height="4" fill="black"/><rect x="78" y="142" width="4" height="4" fill="black"/><rect x="86" y="142" width="4" height="4" fill="black"/><rect x="98" y="142" width="4" height="4" fill="black"/><rect x="110" y="142" width="4" height="4" fill="black"/><rect x="122" y="142" width="4" height="4" fill="black"/><rect x="134" y="142" width="4" height="4" fill="black"/><rect x="146" y="142" width="4" height="4" fill="black"/>
-  <rect x="80" y="80" width="40" height="40" rx="4" fill="black"/>
-  <rect x="88" y="88" width="8" height="8" fill="white"/>
-  <rect x="100" y="88" width="8" height="8" fill="white"/>
-  <rect x="88" y="100" width="8" height="8" fill="white"/>
-  <rect x="100" y="100" width="8" height="8" fill="white"/>
-  <rect x="120" y="130" width="8" height="8" fill="black"/>
-  <rect x="132" y="130" width="8" height="8" fill="black"/>
-  <rect x="120" y="142" width="8" height="8" fill="black"/>
-  <rect x="60" y="120" width="8" height="8" fill="black"/>
-  <rect x="60" y="132" width="8" height="8" fill="black"/>
-  <rect x="72" y="120" width="8" height="8" fill="black"/>
-</svg>`
-
 function formatPrice(p) {
   return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(p)
 }
-
-function Navbar({ page, setPage, cartCount }) {
+function Navbar({ page, setPage, cartCount, setShowAdmin }) {
   const links = [
     { key: 'home', label: 'Home' },
     { key: 'menu', label: 'Menu' },
@@ -87,7 +49,6 @@ function Navbar({ page, setPage, cartCount }) {
     { key: 'locations', label: 'Locations' },
     { key: 'shop', label: 'Shop' },
   ]
-
   return (
     <header className="sticky top-0 z-50 w-full px-4 sm:px-6 lg:px-8 py-4">
       <nav className="bg-white rounded-full border-2 border-black shadow-[4px_4px_0px_#000000] flex justify-between items-center px-8 py-3 max-w-7xl mx-auto">
@@ -113,6 +74,13 @@ function Navbar({ page, setPage, cartCount }) {
         </div>
         <div className="flex items-center gap-3">
           <button
+            onClick={() => setShowAdmin(true)}
+            className="hidden md:inline-flex items-center justify-center w-10 h-10 rounded-full border-2 border-black bg-surface shadow-[3px_3px_0px_#000000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer"
+            title="Admin Panel"
+          >
+            <span className="material-symbols-outlined text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>admin_panel_settings</span>
+          </button>
+          <button
             onClick={() => setPage('shop')}
             className="hidden md:inline-flex items-center gap-2 bg-black text-white px-6 py-2 rounded-full font-label-sm uppercase tracking-wider shadow-[4px_4px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all border-2 border-black cursor-pointer"
           >
@@ -129,14 +97,13 @@ function Navbar({ page, setPage, cartCount }) {
     </header>
   )
 }
-
 function Hero({ setPage }) {
   return (
     <section className="reveal grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div className="relative w-full aspect-square rounded-3xl bg-surface p-8 border-2 border-black shadow-[8px_8px_0px_#000000] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary-fixed-dim/20 to-transparent opacity-50"></div>
-        <div className="w-full h-full relative z-10 rounded-2xl border-2 border-black bg-primary-pastel/30 animate-float flex items-center justify-center">
-          <span className="material-symbols-outlined text-8xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>dark_mode</span>
+        <div className="w-full h-full relative z-10 rounded-2xl border-2 border-black overflow-hidden">
+          <img src="/image/coffeshop.jpg" alt="Lunar Coffee Shop" className="w-full h-full object-cover" />
         </div>
         <div className="absolute bottom-8 left-8 bg-white border-2 border-black rounded-full p-4 shadow-[4px_4px_0px_#000000] flex flex-col items-center justify-center w-24 h-24 z-20 hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all animate-float" style={{ animationDelay: '0.5s' }}>
           <span className="material-symbols-outlined text-primary-pastel text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>local_cafe</span>
@@ -164,8 +131,7 @@ function Hero({ setPage }) {
     </section>
   )
 }
-
-function MenuSection({ cart, setCart }) {
+function MenuSection({ cart, setCart, menuItems, categories }) {
   const [filter, setFilter] = useState('All')
   const addToCart = (item) => {
     setCart(prev => {
@@ -176,7 +142,6 @@ function MenuSection({ cart, setCart }) {
       return [...prev, { ...item, qty: 1 }]
     })
   }
-
   return (
     <section className="reveal text-center space-y-12">
       <div className="space-y-4 max-w-2xl mx-auto">
@@ -185,9 +150,8 @@ function MenuSection({ cart, setCart }) {
           Discover our signature blends and homemade treats, crafted to elevate your daily routine.
         </p>
       </div>
-
       <div className="flex gap-3 justify-center flex-wrap">
-        {['All', 'Coffee', 'Food'].map(cat => (
+        {['All', ...categories].map(cat => (
           <button
             key={cat}
             onClick={() => setFilter(cat)}
@@ -199,7 +163,6 @@ function MenuSection({ cart, setCart }) {
           </button>
         ))}
       </div>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {menuItems.filter(i => filter === 'All' || i.cat === filter).map((item) => {
           const inCart = cart.find(c => c.id === item.id)
@@ -238,7 +201,6 @@ function MenuSection({ cart, setCart }) {
     </section>
   )
 }
-
 function AboutSection() {
   return (
     <section className="reveal grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -265,26 +227,20 @@ function AboutSection() {
           </div>
         </div>
       </div>
-      <div className="relative w-full aspect-square rounded-3xl bg-surface p-8 border-2 border-black shadow-[8px_8px_0px_#000000] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-topography opacity-30"></div>
-        <div className="w-full h-full relative z-10 rounded-2xl border-2 border-black bg-primary-pastel/20 flex items-center justify-center">
-          <div className="text-center">
-            <span className="material-symbols-outlined text-8xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>emoji_objects</span>
-            <p className="font-body-md text-lg mt-4 text-text-main font-bold">Since 2024</p>
-          </div>
+      <div className="relative w-full aspect-square rounded-3xl bg-surface p-8 border-2 border-black shadow-[8px_8px_0px_#000000] overflow-hidden">
+        <div className="w-full h-full rounded-2xl border-2 border-black overflow-hidden">
+          <img src="/image/fotoowner.jpeg" alt="Pemilik Lunar Coffee" className="w-full h-full object-cover" />
         </div>
       </div>
     </section>
   )
 }
-
 function LocationsSection() {
   const locations = [
     { name: 'Lunar Coffee - Pusat Banda Aceh', address: 'Jl. Tgk. H. Mohd. Daud Beureueh No.12, Banda Aceh', phone: '0812-3456-7890', hours: '08:00 - 22:00' },
     { name: 'Lunar Coffee - Simpang Lima', address: 'Jl. Sultan Iskandar Muda No.45, Simpang Lima, Banda Aceh', phone: '0812-3456-7891', hours: '09:00 - 23:00' },
     { name: 'Lunar Coffee - Ulee Lheue', address: 'Jl. Pelabuhan Ulee Lheue No.7, Banda Aceh', phone: '0812-3456-7892', hours: '08:00 - 21:00' },
   ]
-
   return (
     <section className="reveal space-y-12">
       <div className="space-y-4">
@@ -320,27 +276,22 @@ function LocationsSection() {
     </section>
   )
 }
-
 const ewalletOptions = [
-  { key: 'gopay', label: 'GoPay', icon: 'account_balance_wallet', color: '#00AAFF' },
-  { key: 'ovo', label: 'OVO', icon: 'account_balance_wallet', color: '#4B2B9C' },
-  { key: 'dana', label: 'Dana', icon: 'account_balance_wallet', color: '#0086D4' },
-  { key: 'shopeepay', label: 'ShopeePay', icon: 'account_balance_wallet', color: '#EE4D2D' },
-  { key: 'linkaja', label: 'LinkAja', icon: 'account_balance_wallet', color: '#ED1C24' },
+  { key: 'gopay', label: 'GoPay', icon: 'account_balance_wallet', color: '#00AAFF', account: '0812-3456-7890', instructions: 'Buka GoPay > Bayar > Scan QR atau masukkan nomor tujuan' },
+  { key: 'ovo', label: 'OVO', icon: 'account_balance_wallet', color: '#4B2B9C', account: '0812-3456-7891', instructions: 'Buka OVO > Transfer > ke nomor OVO tujuan' },
+  { key: 'dana', label: 'Dana', icon: 'account_balance_wallet', color: '#0086D4', account: '0812-3456-7892', instructions: 'Buka Dana > Kirim > ke nomor Dana tujuan' },
+  { key: 'shopeepay', label: 'ShopeePay', icon: 'account_balance_wallet', color: '#EE4D2D', account: '0812-3456-7893', instructions: 'Buka Shopee > ShopeePay > Kirim ke nomor tujuan' },
+  { key: 'linkaja', label: 'LinkAja', icon: 'account_balance_wallet', color: '#ED1C24', account: '0812-3456-7894', instructions: 'Buka LinkAja > Transfer > ke nomor LinkAja tujuan' },
 ]
-
-function ShopSection({ cart, setCart }) {
+function ShopSection({ cart, setCart, onOrderComplete }) {
   const [step, setStep] = useState('cart')
   const [payment, setPayment] = useState('')
   const [ewallet, setEwallet] = useState('')
   const [animClass, setAnimClass] = useState('')
-
   const total = cart.reduce((sum, c) => sum + c.price * c.qty, 0)
-
   const updateQty = (id, delta) => {
     setCart(prev => prev.map(c => c.id === id ? { ...c, qty: Math.max(0, c.qty + delta) } : c).filter(c => c.qty > 0))
   }
-
   const transitionTo = (next) => {
     setAnimClass('opacity-0 translate-y-4')
     setTimeout(() => {
@@ -348,7 +299,6 @@ function ShopSection({ cart, setCart }) {
       requestAnimationFrame(() => setAnimClass('opacity-100 translate-y-0'))
     }, 200)
   }
-
   const handlePay = () => {
     if (!payment) return
     if (payment === 'qris') {
@@ -356,26 +306,95 @@ function ShopSection({ cart, setCart }) {
       return
     }
     if (payment === 'ewallet' && !ewallet) return
-    transitionTo('paid')
+    if (payment === 'ewallet') {
+      transitionTo('ewallet_paid')
+      return
+    }
+    if (payment === 'cash') {
+      onOrderComplete?.()
+      transitionTo('paid')
+    }
   }
-
   const stepClass = `transition-all duration-300 ease-out ${animClass || 'opacity-100 translate-y-0'}`
-
   return (
     <section className="space-y-8 max-w-4xl mx-auto w-full">
       <h2 className="font-h1 text-h1 text-center">Checkout</h2>
-
       <div className={stepClass}>
         {step === 'qris' && (
-          <div className="bg-white rounded-3xl border-2 border-black shadow-[8px_8px_0px_#000000] p-8 space-y-6 text-center">
-            <h2 className="font-h2 text-h2">Scan QRIS</h2>
-            <p className="font-body-md text-body-md text-on-surface-variant">Scan kode QR di bawah untuk melakukan pembayaran</p>
-            <div className="flex justify-center">
-              <div className="border-2 border-black rounded-2xl p-4 bg-white inline-block" dangerouslySetInnerHTML={{ __html: QR_SVG }} />
+          <div className="bg-white rounded-3xl border-2 border-black shadow-[8px_8px_0px_#000000] p-8 space-y-6">
+            <div className="text-center">
+              <div className="inline-flex items-center gap-2 bg-black text-white px-5 py-2 rounded-full font-label-sm text-sm font-bold">
+                <span className="material-symbols-outlined text-base">qr_code_scanner</span>
+                QRIS
+              </div>
+              <h2 className="font-h2 text-h2 mt-4">Pembayaran QRIS</h2>
+              <p className="font-body-md text-body-md text-on-surface-variant mt-1">Scan kode QR untuk melakukan pembayaran</p>
             </div>
-            <p className="font-label-sm text-sm text-on-surface-variant">Total: {formatPrice(total)}</p>
+            <div className="flex justify-center">
+              <div className="border-2 border-black rounded-2xl p-4 bg-white inline-block shadow-[4px_4px_0px_#000000]">
+                <img src="/image/monyet.png" alt="QRIS" width="220" height="220" className="block" />
+              </div>
+            </div>
+            <div className="max-w-s mx-auto bg-surface rounded-2xl border-2 border-black overflow-hidden shadow-[4px_4px_0px_#000000]">
+              <div className="px-6 py-5 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="material-symbols-outlined text-2xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>store</span>
+                  <p className="font-headline-lg text-lg font-bold">Lunar Coffee</p>
+                </div>
+                <div className="w-full h-px bg-black"></div>
+                <div className="flex items-center justify-between">
+                  <p className="font-label-sm text-sm text-on-surface-variant">Total Pembayaran</p>
+                  <p className="font-h2 text-h2 text-primary font-bold">{formatPrice(total)}</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-3 justify-center">
+              <button onClick={() => { onOrderComplete?.(); transitionTo('paid') }} className="bg-primary-pastel text-black px-8 py-3 rounded-full font-label-sm uppercase tracking-wider font-bold border-2 border-black shadow-[4px_4px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer">
+                Konfirmasi
+              </button>
+              <button onClick={() => { setPayment(''); transitionTo('cart') }} className="bg-white text-black px-6 py-3 rounded-full font-label-sm uppercase tracking-wider font-bold border-2 border-black shadow-[4px_4px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer">
+                Kembali
+              </button>
+            </div>
+          </div>
+        )}
+        {step === 'ewallet_paid' && (
+          <div className="bg-white rounded-3xl border-2 border-black shadow-[8px_8px_0px_#000000] p-8 space-y-6">
+            <div className="text-center">
+              <div className="inline-flex items-center gap-2 bg-black text-white px-4 py-1.5 rounded-full font-label-sm text-sm font-bold">
+                <span className="material-symbols-outlined text-sm">wallet</span>
+                {ewalletOptions.find(e => e.key === ewallet)?.label}
+              </div>
+              <h2 className="font-h2 text-h2 mt-4">Instruksi Pembayaran</h2>
+            </div>
+            <div className="bg-surface rounded-2xl border-2 border-black p-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1", color: ewalletOptions.find(e => e.key === ewallet)?.color }}>account_balance_wallet</span>
+                  <div>
+                    <p className="font-headline-lg text-lg font-bold">{ewalletOptions.find(e => e.key === ewallet)?.label}</p>
+                    <p className="font-body-md text-sm text-on-surface-variant">Nomor tujuan transfer</p>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white rounded-xl border-2 border-black p-4 text-center">
+                <p className="font-label-sm text-xs text-on-surface-variant mb-1">Nomor Akun</p>
+                <p className="font-h1 text-h2 tracking-widest text-primary select-all">{ewalletOptions.find(e => e.key === ewallet)?.account}</p>
+              </div>
+              <div className="bg-primary-pastel/20 rounded-xl border-2 border-primary-pastel p-4 flex items-start gap-3">
+                <span className="material-symbols-outlined text-primary text-lg">info</span>
+                <div>
+                  <p className="font-label-sm text-sm font-bold">Instruksi:</p>
+                  <p className="font-body-md text-sm text-on-surface-variant mt-1">{ewalletOptions.find(e => e.key === ewallet)?.instructions}</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-xl border-2 border-black p-4 flex justify-between items-center">
+                <span className="font-label-sm text-sm font-bold">Total Pembayaran</span>
+                <span className="font-h2 text-h2 text-primary">{formatPrice(total)}</span>
+              </div>
+            </div>
             <div className="flex gap-4 justify-center">
-              <button onClick={() => transitionTo('paid')} className="bg-primary-pastel text-black px-8 py-3 rounded-full font-label-sm uppercase tracking-wider font-bold border-2 border-black shadow-[4px_4px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer">
+              <button onClick={() => { onOrderComplete?.(); transitionTo('paid') }} className="bg-primary-pastel text-black px-8 py-3 rounded-full font-label-sm uppercase tracking-wider font-bold border-2 border-black shadow-[4px_4px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer">
                 Konfirmasi Pembayaran
               </button>
               <button onClick={() => { setPayment(''); transitionTo('cart') }} className="bg-white text-black px-6 py-3 rounded-full font-label-sm uppercase tracking-wider font-bold border-2 border-black shadow-[4px_4px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer">
@@ -384,7 +403,6 @@ function ShopSection({ cart, setCart }) {
             </div>
           </div>
         )}
-
         {step === 'paid' && (
           <div className="bg-primary-pastel rounded-3xl border-2 border-black shadow-[8px_8px_0px_#000000] p-12 space-y-4 text-center">
             <span className="material-symbols-outlined text-6xl" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
@@ -395,7 +413,6 @@ function ShopSection({ cart, setCart }) {
             </button>
           </div>
         )}
-
         {step === 'cart' && (
           <>
             {cart.length === 0 ? (
@@ -423,7 +440,6 @@ function ShopSection({ cart, setCart }) {
                     </div>
                   ))}
                 </div>
-
                 <div className="bg-white rounded-3xl border-2 border-black shadow-[8px_8px_0px_#000000] p-8 space-y-6">
                   <h3 className="font-headline-lg text-2xl font-bold">Metode Pembayaran</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -447,7 +463,6 @@ function ShopSection({ cart, setCart }) {
                       </button>
                     ))}
                   </div>
-
                   {payment === 'ewallet' && (
                     <div className="border-t-2 border-black pt-6 space-y-4">
                       <p className="font-headline-lg text-lg font-bold">Pilih E-Wallet</p>
@@ -469,7 +484,6 @@ function ShopSection({ cart, setCart }) {
                       </div>
                     </div>
                   )}
-
                   <div className="flex justify-between items-center pt-4 border-t-2 border-black">
                     <div>
                       <p className="font-label-sm text-sm text-on-surface-variant">Total Pesanan</p>
@@ -492,7 +506,6 @@ function ShopSection({ cart, setCart }) {
     </section>
   )
 }
-
 function NewsSection() {
   return (
     <section className="reveal space-y-12">
@@ -537,8 +550,7 @@ function NewsSection() {
     </section>
   )
 }
-
-function Footer({ setPage }) {
+function Footer({ setPage, setShowAdmin }) {
   return (
     <footer className="bg-surface-container-highest border-t-2 border-black mt-xl">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-lg py-md w-full gap-4">
@@ -558,15 +570,36 @@ function Footer({ setPage }) {
             </button>
           ))}
         </div>
-        <p className="font-label-sm text-label-sm text-on-surface-variant">&copy; 2024 Lunar Coffee. All rights reserved.</p>
+        <div className="flex items-center gap-4">
+          <p className="font-label-sm text-label-sm text-on-surface-variant">&copy; 2024 Lunar Coffee. All rights reserved.</p>
+          <button onClick={() => setShowAdmin(true)} className="text-xs text-on-surface-variant hover:text-text-main underline underline-offset-2 transition-colors cursor-pointer">
+            Admin
+          </button>
+        </div>
       </div>
     </footer>
   )
 }
-
 function App() {
   const [page, setPage] = useState('home')
   const [cart, setCart] = useState([])
+  const [adminLoggedIn, setAdminLoggedIn] = useState(false)
+  const [showAdmin, setShowAdmin] = useState(false)
+  const [menuItems, setMenuItems] = useState(defaultMenuItems)
+  const [categories, setCategories] = useState(defaultCategories)
+
+  const fetchPublicData = () => {
+    menuApi.getAll().then(setMenuItems).catch(() => {
+      const saved = localStorage.getItem('lunar_menuItems')
+      if (saved) setMenuItems(JSON.parse(saved))
+    })
+    categoryApi.getAll().then(setCategories).catch(() => {
+      const saved = localStorage.getItem('lunar_categories')
+      if (saved) setCategories(JSON.parse(saved))
+    })
+  }
+
+  useEffect(() => { fetchPublicData() }, [])
 
   useEffect(() => {
     function reveal() {
@@ -584,29 +617,54 @@ function App() {
     reveal()
     return () => window.removeEventListener('scroll', reveal)
   }, [page])
-
   const cartCount = cart.reduce((s, c) => s + c.qty, 0)
-
+  const handleOrderComplete = () => {
+    const items = cart.map(c => ({ id: c.id, name: c.name, price: c.price, qty: c.qty }))
+    orderApi.create(items).catch(console.error)
+    const orders = JSON.parse(localStorage.getItem('lunar_orders') || '[]')
+    orders.push({
+      id: Date.now(),
+      items: [...cart],
+      total: cart.reduce((s, c) => s + c.price * c.qty, 0),
+      date: new Date().toISOString(),
+    })
+    localStorage.setItem('lunar_orders', JSON.stringify(orders))
+  }
+  useEffect(() => {
+    if (adminLoggedIn) {
+      setShowAdmin(true)
+    }
+  }, [adminLoggedIn])
+  useEffect(() => {
+    if (!showAdmin) {
+      fetchPublicData()
+    }
+  }, [showAdmin])
+  if (showAdmin) {
+    if (!adminLoggedIn) {
+      return <AdminLogin onLogin={() => setAdminLoggedIn(true)} />
+    }
+    return <AdminDashboard onLogout={() => { setAdminLoggedIn(false); setShowAdmin(false) }} />
+  }
   return (
     <>
-      <Navbar page={page} setPage={setPage} cartCount={cartCount} />
+      <Navbar page={page} setPage={setPage} cartCount={cartCount} setShowAdmin={setShowAdmin} />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-32">
         {page === 'home' && (
           <>
             <Hero setPage={setPage} />
-            <MenuSection cart={cart} setCart={setCart} />
+            <MenuSection cart={cart} setCart={setCart} menuItems={menuItems} categories={categories} />
             <AboutSection />
             <NewsSection />
           </>
         )}
-        {page === 'menu' && <MenuSection cart={cart} setCart={setCart} />}
+        {page === 'menu' && <MenuSection cart={cart} setCart={setCart} menuItems={menuItems} categories={categories} />}
         {page === 'story' && <AboutSection />}
         {page === 'locations' && <LocationsSection />}
-        {page === 'shop' && <ShopSection cart={cart} setCart={setCart} />}
+        {page === 'shop' && <ShopSection cart={cart} setCart={setCart} onOrderComplete={handleOrderComplete} />}
       </main>
-      <Footer setPage={setPage} />
+      <Footer setPage={setPage} setShowAdmin={setShowAdmin} />
     </>
   )
 }
-
 export default App
