@@ -1,8 +1,9 @@
 {
-  "name": "temp-lunar",
+  "name": "lunar-coffee",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "Lunar Coffee - Premium coffee shop website with neubrutalism design",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -21,5 +22,8 @@
     "oxlint": "^1.71.0",
     "tailwindcss": "^4.3.2",
     "vite": "^8.1.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

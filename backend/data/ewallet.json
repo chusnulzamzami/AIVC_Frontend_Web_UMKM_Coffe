@@ -1,0 +1,7 @@
+[
+  {"key": "gopay", "label": "GoPay", "icon": "account_balance_wallet", "color": "#00AAFF", "account": "0812-3456-7890", "instructions": "Buka GoPay > Bayar > Scan QR atau masukkan nomor tujuan"},
+  {"key": "ovo", "label": "OVO", "icon": "account_balance_wallet", "color": "#4B2B9C", "account": "0812-3456-7891", "instructions": "Buka OVO > Transfer > ke nomor OVO tujuan"},
+  {"key": "dana", "label": "Dana", "icon": "account_balance_wallet", "color": "#0086D4", "account": "0812-3456-7892", "instructions": "Buka Dana > Kirim > ke nomor Dana tujuan"},
+  {"key": "shopeepay", "label": "ShopeePay", "icon": "account_balance_wallet", "color": "#EE4D2D", "account": "0812-3456-7893", "instructions": "Buka Shopee > ShopeePay > Kirim ke nomor tujuan"},
+  {"key": "linkaja", "label": "LinkAja", "icon": "account_balance_wallet", "color": "#ED1C24", "account": "0812-3456-7894", "instructions": "Buka LinkAja > Transfer > ke nomor LinkAja tujuan"}
+]

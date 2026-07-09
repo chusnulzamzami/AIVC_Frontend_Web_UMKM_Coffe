@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react'
 import { menuApi, categoryApi, orderApi, dashboardApi } from './api.js'
-
-function formatPrice(p) {
-  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(p)
-}
+import { formatPrice } from '../utils/format'
 
 function DashboardHome() {
   const [orders, setOrders] = useState([])
