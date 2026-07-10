@@ -214,15 +214,15 @@ function AboutSection() {
         </p>
         <div className="flex gap-4">
           <div className="bg-white rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000000] p-6 text-center flex-1">
-            <span className="font-h1 text-h1 text-primary">50+</span>
+            <span className="font-h1 text-h1 text-primary">20+</span>
             <p className="font-label-sm text-sm mt-2">Varian Kopi</p>
           </div>
           <div className="bg-white rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000000] p-6 text-center flex-1">
-            <span className="font-h1 text-h1 text-primary">10K+</span>
+            <span className="font-h1 text-h1 text-primary">5K+</span>
             <p className="font-label-sm text-sm mt-2">Pelanggan</p>
           </div>
           <div className="bg-white rounded-2xl border-2 border-black shadow-[4px_4px_0px_#000000] p-6 text-center flex-1">
-            <span className="font-h1 text-h1 text-primary">5</span>
+            <span className="font-h1 text-h1 text-primary">3</span>
             <p className="font-label-sm text-sm mt-2">Cabang</p>
           </div>
         </div>
